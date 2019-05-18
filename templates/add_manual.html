@@ -1,0 +1,70 @@
+{%extends 'base.html'%}
+
+{%block content%}
+
+<div class="jumbotron">
+  <h1 class="text-center">Here you can add a book</h1>
+  <br><br>
+  <div class="container">
+  <form method="post">
+
+    <div class="form-group">
+      <label for="title">Book Title: </label>
+      <textarea class="form-control" name="title" id="title" rows="1" required></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="description">Book Description: </label>
+      <textarea class="form-control" name="description" id="description" rows="3"></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="authors">Author: </label>
+      <select multiple class="form-control" name="authors" id="authors">
+        {% for author in authors %}
+        <option value= "{{author.id}}">{{author}}</option>
+        {% endfor %}
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="categories">Category: </label>
+      <select multiple class="form-control" name="categories" id="categories">
+        {% for cat in categories %}
+        <option value= "{{cat.id}}">{{cat}}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <div class="form-group">
+    <button type="submit" name ="addbook" value="save" class="btn btn-primary mb-2">Add</button>
+    </div>
+  </form>
+  </div>
+</div>
+<div class=" jumbotron">
+  <h2 class="text-center">If you can not find your author or category on the list you can add them here:</h2>
+  <br><br>
+  <div class="container">
+  <form method="post">
+    <div class="form-group">
+      <label for="addauthor">Author: </label>
+      <textarea class="form-control" name="newauthor" id="addauthor" rows="1" required></textarea>
+    </div>
+    <div class="form-group">
+      <button type="submit" name ="authoradd" value="add" class="btn btn-primary mb-2">Add</button>
+    </div>
+  </form>
+  <form method="post">
+    <div class="form-group">
+      <label for="addcategory">Category: </label>
+      <textarea class="form-control" name="newcategory" id="addcategory" rows="1" required></textarea>
+    </div>
+    <div class="form-group">
+      <button type="submit" name ="categoryadd" value="add" class="btn btn-primary mb-2">Add</button>
+    </div>
+  </form>
+</div>
+
+</div>
+
+{%endblock%}

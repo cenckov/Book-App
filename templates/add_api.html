@@ -1,0 +1,19 @@
+{%extends 'base.html'%}
+
+{%block content%}
+<div class="jumbotron">
+  <div class="text-center">
+  <h1>Search for books in Google to add them to your library</h1>
+  <br><br>
+  <form method="post">
+    {{form.hidden_tag()}}
+    {{form.select.label}} {{form.select()}}
+    {{form.search.label}} {{form.search()}}
+    {{form.submit()}}
+  </form>
+  <p>{{validate}}</p>
+  </div>
+</div>
+
+
+{%endblock%}

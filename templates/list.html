@@ -1,0 +1,47 @@
+{%extends 'base.html'%}
+
+{%block content%}
+
+<div class="jumbotron">
+  <div class="text-center">
+  <h1>Here is a list of all your books</h1>
+  <br><br>
+  <form method="post">
+    {{form.hidden_tag()}}
+    {{form.select.label}} {{form.select()}}
+    {{form.search.label}} {{form.search()}}
+    {{form.submit()}}
+  </form>
+  </div>
+</div>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col" width=5%>ID</th>
+        <th scope="col" width=19%>Title</th>
+        <th scope="col" width=19%>Authors</th>
+        <th scope="col" width=19%>Categories</th>
+        <th scope="col" width=32%>Description</th>
+        <th scope ="col" width=6%></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for book in books%}
+      <tr>
+        <th scope="row">{{book.id}}</th>
+        <td>{{book.title}}</td>
+        <td>{{book.author}}</td>
+        <td>{{book.category}}</td>
+        <td class="text-justify">{{book.description}}</td>
+        <td class='align-middle'>
+        <form method="post">
+          <button type="submit" name ="delete" value={{book.id}} class="btn btn-primary mb-2">Delete</button>
+        </form>
+        </td>
+      </tr>
+      {%endfor%}
+    </tbody>
+  </table>
+
+{%endblock%}
