@@ -252,5 +252,21 @@ def google_books_add():
 
     return render_template('add_api_confirm.html',books=books)
 
+@app.route('/admin',methods=['GET','POST'])
+def admin():
+
+    if request.method =='POST':
+
+        db.engine.execute("delete from category_association;")
+        db.engine.execute("delete from author_association;")
+        Author.query.delete()
+        Category.query.delete()
+        Book.query.delete()
+        db.session.commit()
+
+        return redirect(url_for('list'))
+
+    return render_template('admin.html')
+
 if __name__ == '__main__':
     app.run(debug=False)
